@@ -5,7 +5,8 @@ import aliens from './aliens';
 import AliensView from './views/AliensView';
 import IndexScreen from './screens/index'; 
 import LoginScreen from './screens/Login'; 
-import RegisterScreen from './screens/Register'; 
+import RegisterScreen from './screens/Register';
+import AliensScreen from './screens/Aliens';  
 import {createSwitchNavigator, 
 		createStackNavigator} from 'react-navigation'
 
@@ -35,12 +36,17 @@ const IndexNavigator = createStackNavigator({
             	header: null
         	}}, 
 	Register: {screen: RegisterScreen,
-			navigationOptions:{
+			   navigationOptions:{
             	header: null
+        	}},
+	Aliens:  {screen: AliensScreen,
+			  navigationOptions:{
+            	header: null,
+				passProps: {aliens: aliens}
         	}},
 }, 
 {
-	initialRouteName: "Index",
+	initialRouteName: "Aliens",
 });
 
 const styles = StyleSheet.create({

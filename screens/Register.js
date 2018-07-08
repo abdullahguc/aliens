@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Button, View, StyleSheet, Text, AsyncStorage, ImageBackground, TextInput} from "react-native";
 
 export default class Login extends React.Component{
