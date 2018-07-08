@@ -1,12 +1,10 @@
-import React from 'react';
+import React from "react";
 import { Button, View, StyleSheet, Text, AsyncStorage, ImageBackground } from "react-native";
 
-
-export default class index extends React.Component{
-	
+export default class Register extends React.Component{
 
 	render(){
-		return(
+		return (
 			<View style={styles.parent}> 
 				<ImageBackground
 		    	  style={styles.backgroundImage}
@@ -23,7 +21,6 @@ export default class index extends React.Component{
 		);
 	}
 
-	
 	onLogin = () =>
 	{
 		this.props.navigation.navigate("Login");
@@ -33,7 +30,6 @@ export default class index extends React.Component{
 	{
 		this.props.navigation.navigate("Register");
 	};
-
 
 }
 
@@ -58,4 +54,4 @@ const styles = StyleSheet.create({
 		width: '50%',
 		paddingBottom: '1%',
 	},
-});	
+});

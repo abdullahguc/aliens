@@ -4,10 +4,14 @@ import {Constants} from 'expo';
 import aliens from './aliens';
 import AliensView from './views/AliensView';
 import IndexScreen from './screens/index'; 
-import IndexScreen from './screens/Login'; 
-import {createSwitchNavigator} from 'react-navigation'
+import LoginScreen from './screens/Login'; 
+import RegisterScreen from './screens/Register'; 
+import {createSwitchNavigator, 
+		createStackNavigator} from 'react-navigation'
 
 export default class App extends React.Component {
+
+
   render() {
     return (
           <IndexNavigator
@@ -21,9 +25,19 @@ export default class App extends React.Component {
 
 
 
-const IndexNavigator = createSwitchNavigator({
-	Index: IndexScreen,
-	Login:   
+const IndexNavigator = createStackNavigator({
+	Index: {screen: IndexScreen,
+			navigationOptions:{
+            	header: null
+        	}},
+	Login: {screen: LoginScreen,
+			navigationOptions:{
+            	header: null
+        	}}, 
+	Register: {screen: RegisterScreen,
+			navigationOptions:{
+            	header: null
+        	}},
 }, 
 {
 	initialRouteName: "Index",
