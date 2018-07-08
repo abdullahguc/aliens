@@ -1,17 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {Constants} from 'expo';
-import aliens from 'aliens.js';
-import AliensView from 'views/aliens-view.js';
+import aliens from './aliens';
+import AliensView from './views/AliensView';
+//import {createSwitchNavigator} from 'react-navigation'
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App. to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <AliensView style={styles.container} aliens= {aliens}>
+      </AliensView>
     );
   }
 }

@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 
@@ -15,13 +15,16 @@ const styles = StyleSheet.create({
 
 const Row = props => (
   <TouchableOpacity
-    style={styles.row}
+    style={styles.row}>
     <Text>{props.Name}</Text>
     <Text>{props.Description}</Text>
- 	<Image
-        source={require('../assets/aliens.png')}
-    />
+	 <Image
+          style={{width: 50, height: 50}}
+          source={require('./../assets/aliens.png')}
+        />
   </TouchableOpacity>
 );
+
+
 
 export default Row;
