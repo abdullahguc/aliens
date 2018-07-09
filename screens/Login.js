@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, View, StyleSheet, Text, AsyncStorage, ImageBackground, TextInput} from "react-native";
 import jwtDecode from 'jwt-decode';
+import localStorage from 'react-native-sync-localstorage';
 
 export default class Register extends React.Component{
 
@@ -52,7 +53,6 @@ export default class Register extends React.Component{
 			'Content-Type': 'application/json',
 		  },
 		  body: JSON.stringify({
-				name: 'Abdullah',
     			email: this.state.email,
     			password: this.state.password,
   			}),
@@ -60,14 +60,16 @@ export default class Register extends React.Component{
 			if(res.auth_token)
 			{
     		  var decoded = jwtDecode(res.auth_token);
-			  console.log(decoded);
+			  localStorage.setItem('auth_token', res.auth_token);
+			  localStorage.setItem('email', this.state.email);
+			  localStorage.setItem('user_id', decoded.user_id);
+			  localStorage.setItem('admin', decoded.admin);
+			  this.props.navigation.navigate('Aliens');
 			} 
 			else
 			{
-				console.log("couldn't be found");
    			   	this.setState({errorMessage: 'Incorrect Username or Password'});
-
-			}   	
+			}  
 		}).catch((err) => {console.log(err)});
 	};
 	

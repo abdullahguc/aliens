@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, View, StyleSheet, Text, AsyncStorage, ImageBackground, TextInput} from "react-native";
+import localStorage from 'react-native-sync-localstorage';
 
 export default class Login extends React.Component{
 	state = {
