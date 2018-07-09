@@ -2,7 +2,12 @@ import React from 'react';
 import { Button, View, StyleSheet, Text, AsyncStorage, ImageBackground, TextInput} from "react-native";
 
 export default class Login extends React.Component{
-	
+	state = {
+		name: '',
+		email: '',
+		password: '', 
+		confirmPassword: '', 
+	};
 	render(){
 		return (
 			<View style={styles.parent}> 
@@ -12,19 +17,27 @@ export default class Login extends React.Component{
 		   		>
 					<View style={styles.button}>
 						<TextInput
+						  value={this.state.name}
 						  placeholder="Name"
 						  style={styles.textbox}
+         			 	  onChangeText={this.getHandler('name')}
 						/>
 						<TextInput
+						  value={this.state.email}
+         			 	  onChangeText={this.getHandler('email')}
 						  placeholder="Email"
 						  style={styles.textbox}
 						/>
 						<TextInput
+						  value={this.state.password}
+         			 	  onChangeText={this.getHandler('password')}
 						  placeholder="Password"
 						  style={styles.textbox}
 						  secureTextEntry={true}
 						/>
 						<TextInput
+						  value={this.state.confirmPassword}
+         			 	  onChangeText={this.getHandler('confirmPassword')}
 						  placeholder="Confirm Password"
 						  style={styles.textbox}
 						  secureTextEntry={true}
@@ -38,15 +51,20 @@ export default class Login extends React.Component{
 		);
 	}
 
-	onLogin = () =>
-	{
-		this.props.navigation.navigate("Login");
-	};
-
 	onRegister = () =>
 	{
-		this.props.navigation.navigate("Register");
-	};
+		fetch('http://192.168.1.109:3000/api/v1/signup', {
+		  method: 'POST',
+		  headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json',
+		  },
+		}).then((res) => {console.log(res)}).catch((err) => {console.log(err)});
+	}
+
+	getHandler = key => val => {
+     this.setState({ [key]: val });
+  	};
 }
 
 

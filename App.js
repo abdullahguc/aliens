@@ -46,7 +46,7 @@ const IndexNavigator = createStackNavigator({
         	}},
 }, 
 {
-	initialRouteName: "Aliens",
+	initialRouteName: "Index",
 });
 
 const styles = StyleSheet.create({
