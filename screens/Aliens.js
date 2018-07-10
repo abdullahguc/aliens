@@ -15,8 +15,7 @@ export default class index extends React.Component{
 	constructor(props)
 	{
 		super(props);
-		console.log( localStorage.getItem('auth_token'));
-		fetch('http://192.168.1.108:3000/api/v1/user/alliens', {
+		fetch('https://aliens-app.herokuapp.com/api/v1/user/alliens', {
 		  method: 'GET',
 		  headers:
 		  { 
@@ -31,14 +30,16 @@ export default class index extends React.Component{
 		}).catch((err) => {console.log(err)});
 	}
 
+
 	render(){
 		
 		if(this.state.isLoaded)
 		{
 			if(this.state.aliens.length > 0)
 			{
+
 				return (
-					<AliensComponent aliens={this.state.aliens}></AliensComponent>
+					<AliensComponent aliens={this.state.aliens} navigator={this.props.navigation} ></AliensComponent>
 				);
 			}
 			else

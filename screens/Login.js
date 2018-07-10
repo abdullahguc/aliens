@@ -46,7 +46,7 @@ export default class Register extends React.Component{
 	onLogin = () =>
 	{	
    		this.setState({errorMessage: ''});
-		fetch('http://192.168.1.108:3000/api/v1/login', {
+		fetch('https://aliens-app.herokuapp.com/api/v1/login', {
 		  method: 'POST',
 		  headers: {
 			Accept: 'application/json',
