@@ -6,16 +6,18 @@ import AliensView from './views/AliensView';
 import IndexScreen from './screens/index'; 
 import LoginScreen from './screens/Login'; 
 import RegisterScreen from './screens/Register';
-import AliensScreen from './screens/Aliens';  
+import AliensScreen from './screens/Aliens';
+import AlienScreen from './screens/alien';    
 import {createSwitchNavigator, 
-		createStackNavigator} from 'react-navigation'
+		createStackNavigator} from 'react-navigation';
+import localStorage from 'react-native-sync-localstorage';
 
 export default class App extends React.Component {
 
 
   render() {
     return (
-          <IndexNavigator
+          <MainNavigator
         	screenProps={{
         	  aliens: aliens,
         	}}
@@ -39,14 +41,34 @@ const IndexNavigator = createStackNavigator({
 			   navigationOptions:{
             	header: null
         	}},
-	Aliens:  {screen: AliensScreen,
-			  navigationOptions:{
-            	header: null,
-				passProps: {aliens: aliens}
-        	}},
+	
 }, 
 {
 	initialRouteName: "Index",
+});
+
+const AlienNavigator = createStackNavigator({
+	Aliens: {screen: AliensScreen,
+			navigationOptions:{
+            	header: null
+        	}},
+	Alien: {screen: AlienScreen,
+			navigationOptions:{
+            	header: null
+        	}},
+}, 
+{
+	initialRouteName: "Aliens",
+});
+
+
+var initialScreen = localStorage.getItem('user_id') ? "Aliens" : "Index";
+const MainNavigator = createSwitchNavigator({
+	Index: IndexNavigator,
+	Aliens: AlienNavigator,
+}, 
+{
+	initialRouteName: initialScreen,
 });
 
 const styles = StyleSheet.create({

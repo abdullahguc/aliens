@@ -32,31 +32,11 @@ export default class index extends React.Component{
 	}
 
 	render(){
-		
-		if(this.state.isLoaded)
-		{
-			if(this.state.aliens.length > 0)
-			{
-				return (
-					<AliensComponent aliens={this.state.aliens}></AliensComponent>
-				);
-			}
-			else
-			{
-				return (
-					<Text style={{fontSize: 21, color: 'blue', justifyContent: 'center',
-        			 alignItems: 'center',
-	   					}}>Nothing to be viewed</Text>
-				);
-			}
-		}
-		else
-		{
-			return (
-				<ActivityIndicator size="large" color="#0000ff" style={styles.load}/>
+		return (
+				<Text style={{fontSize: 21, color: 'blue', justifyContent: 'center',
+    			 alignItems: 'center',
+   					}}>Nothing to be viewed</Text>
 			);
-		}
-
 	}
 }
 const styles = StyleSheet.create({

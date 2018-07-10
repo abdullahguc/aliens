@@ -17,18 +17,22 @@ const styles = StyleSheet.create({
 const Row = props => (
  <Card containerStyle={{padding: 0, backgroundColor: '#eaf2ff'}} >
 	  <TouchableOpacity
+		onPress={}
 		style={styles.row}>
 		 <Image
 		      style={{width: 50, height: 50}}
 		      source={require('./../assets/aliens.png')}
 		 />
-		<Text style={{fontWeight: 'bold', fontSize: 20}}>{props.Name}</Text>
-		<Text>{props.Description}</Text>
+		<Text style={{fontWeight: 'bold', fontSize: 20}}>{props.name}</Text>
+		<Text>{props.desc}</Text>
 		
 	  </TouchableOpacity>
 	</Card>
 );
 
+_onClick()
+{
 
+}
 
 export default Row;
