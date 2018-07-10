@@ -12,27 +12,30 @@ const styles = StyleSheet.create({
   row: { padding: 20 }
 });
 
+state = {
+	props: {}
+};
 
-
-const Row = props => (
+const Row = props => {
+return (
  <Card containerStyle={{padding: 0, backgroundColor: '#eaf2ff'}} >
 	  <TouchableOpacity
-		onPress={}
+		onPress={() => {
+					if(props.navigator != null)
+						props.navigator.navigate('Alien', {alien: props.alien, navigator:props.navigator, aliens:props.aliens });
+  			}}
 		style={styles.row}>
 		 <Image
 		      style={{width: 50, height: 50}}
 		      source={require('./../assets/aliens.png')}
 		 />
-		<Text style={{fontWeight: 'bold', fontSize: 20}}>{props.name}</Text>
-		<Text>{props.desc}</Text>
+		<Text style={{fontWeight: 'bold', fontSize: 20}}>{props.alien.name}</Text>
+		<Text>{props.alien.desc}</Text>
 		
 	  </TouchableOpacity>
 	</Card>
-);
+)};
 
-_onClick()
-{
 
-}
 
 export default Row;

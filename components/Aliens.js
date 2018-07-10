@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import Row from './../components/AlienRow.js';
 
 const AliensComponent = props => (
-		<ScrollView>{props.aliens.map(alien => <Row {...alien} />)}</ScrollView>
+		<ScrollView>{props.aliens.map(alien => <Row key = {alien.key} alien={alien} navigator={props.navigator} aliens= {props.aliens}/>)}</ScrollView>
 );
 	
 
 AliensComponent.propTypes = {
-  aliens: PropTypes.array
+  aliens: PropTypes.array,
+  navigator: PropTypes.object
 };
 
 
