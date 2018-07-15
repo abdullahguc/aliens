@@ -10,12 +10,19 @@ export default class index extends React.Component{
 
 	state = {
 		aliens: [],
-		isLoaded: false
+		isLoaded: false,
+		refetch:null
 	};
 	constructor(props)
 	{
 		super(props);
-		fetch('https://aliens-app.herokuapp.com/api/v1/user/alliens', {
+		this.fetchAliens();
+		this.fetchAliens = this.fetchAliens.bind(this);
+	}
+
+
+	fetchAliens = () => {
+	fetch('https://aliens-app.herokuapp.com/api/v1/user/alliens', {
 		  method: 'GET',
 		  headers:
 		  { 
@@ -28,7 +35,8 @@ export default class index extends React.Component{
 				this.setState({aliens: aliens_with_keys});
 				this.setState({isLoaded: true});
 		}).catch((err) => {console.log(err)});
-	}
+	};
+
 
 
 	render(){
@@ -37,9 +45,8 @@ export default class index extends React.Component{
 		{
 			if(this.state.aliens.length > 0)
 			{
-
-				return (
-					<AliensComponent aliens={this.state.aliens} navigator={this.props.navigation} ></AliensComponent>
+				return (																		
+					<AliensComponent aliens={this.state.aliens} navigator={this.props.navigation} refetch={() => {this.fetchAliens()}}></AliensComponent>
 				);
 			}
 			else

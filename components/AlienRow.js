@@ -17,12 +17,13 @@ state = {
 };
 
 const Row = props => {
+
 return (
  <Card containerStyle={{padding: 0, backgroundColor: '#eaf2ff'}} >
 	  <TouchableOpacity
 		onPress={() => {
 					if(props.navigator != null)
-						props.navigator.navigate('Alien', {alien: props.alien, navigator:props.navigator, aliens:props.aliens });
+						props.navigator.navigate('Alien', {alien: props.alien, navigator:props.navigator, aliens:props.aliens, refetch: props.refetch });
   			}}
 		style={styles.row}>
 		 <Image

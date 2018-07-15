@@ -8,6 +8,7 @@ import LoginScreen from './screens/Login';
 import RegisterScreen from './screens/Register';
 import AliensScreen from './screens/Aliens';
 import AlienScreen from './screens/alien';    
+import AddForm from './screens/AddAlien.js';    
 import {createSwitchNavigator, 
 		createStackNavigator} from 'react-navigation';
 import localStorage from 'react-native-sync-localstorage';
@@ -53,6 +54,10 @@ const AlienNavigator = createStackNavigator({
             	header: null
         	}},
 	Alien: {screen: AlienScreen,
+			navigationOptions:{
+            	header: null
+        	}},
+	Add: {screen: AddForm,
 			navigationOptions:{
             	header: null
         	}},
