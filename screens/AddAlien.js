@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import Row from './../components/AlienRow.js';
 import AliensComponent from './../components/Aliens.js';
 import localStorage from 'react-native-sync-localstorage';
+import {addAlien} from './../redux/actions/actions'; 
+import {connect} from 'react-redux';
 
-
-export default class alien extends React.Component{
+class addAlienScreen extends React.Component{
 
 
 	state = {
@@ -107,3 +108,4 @@ const styles = StyleSheet.create({
 	},
 });
 
+export default connect(null, {addAlien: addAlien})(addAlienScreen)

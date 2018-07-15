@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import Row from './../components/AlienRow.js';
 import AliensComponent from './../components/Aliens.js';
 import localStorage from 'react-native-sync-localstorage';
+import {addAlien} from './../redux/actions/actions'; 
+import {connect} from 'react-redux';
 
-
-export default class index extends React.Component{
+class Aliens extends React.Component{
 
 	state = {
 		aliens: [],
@@ -79,3 +80,10 @@ const styles = StyleSheet.create({
 });
 
 const addKeys = (val, key) => ({ key, ...val });
+
+const mapStateToProps = state => ({
+  aliens: state.aliens,
+})
+
+
+export default connect(mapStateToProps)(Aliens)
