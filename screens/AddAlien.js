@@ -6,6 +6,8 @@ import AliensComponent from './../components/Aliens.js';
 import localStorage from 'react-native-sync-localstorage';
 import {addAlien} from './../redux/actions/actions'; 
 import {connect} from 'react-redux';
+import {editAlienAPI} from './../api.js'
+
 
 class addAlienScreen extends React.Component{
 
@@ -50,28 +52,20 @@ class addAlienScreen extends React.Component{
 	
 	}
 	
-	_onAdd = () =>
+	_onAdd = async () =>
 	{
 
 			var alien = {
+				key: this.state.id,
 				id: this.state.id,
 				name: this.state.name,
 				desc: this.state.description
 			};
-			fetch('https://aliens-app.herokuapp.com/api/v1/admin/alliens/' + alien.id, {
-			  method: 'POST',
-			  body: JSON.stringify(alien), 
-			  headers: {
-				Authorization: localStorage.getItem('auth_token'),
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			  }
-			}).then((response) => response.json()).then((res) => {
-					this.props.navigation.state.params.refetch();
-					this.props.navigation.navigate('Aliens');
-			}).catch((err) => {console.log(err)});
-				
-		}
+			
+			await addAlienAPI(alien);
+		    this.props.addAlien(alien);	
+			this.props.navigation.navigate('Aliens');		
+	}
 
 	
 
@@ -107,5 +101,6 @@ const styles = StyleSheet.create({
 		paddingBottom: '1%',
 	},
 });
+
 
 export default connect(null, {addAlien: addAlien})(addAlienScreen)

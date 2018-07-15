@@ -6,6 +6,8 @@ import AliensComponent from './../components/Aliens.js';
 import localStorage from 'react-native-sync-localstorage';
 import {addAlien} from './../redux/actions/actions'; 
 import {connect} from 'react-redux';
+import {setAliens} from './../redux/actions/actions'; 
+
 
 class Aliens extends React.Component{
 
@@ -34,6 +36,7 @@ class Aliens extends React.Component{
 		}).then((response) => response.json()).then((res) => {
 				var aliens_with_keys = res.map(addKeys);
 				this.setState({aliens: aliens_with_keys});
+				this.props.setAliens(aliens_with_keys);
 				this.setState({isLoaded: true});
 		}).catch((err) => {console.log(err)});
 	};
@@ -47,7 +50,7 @@ class Aliens extends React.Component{
 			if(this.state.aliens.length > 0)
 			{
 				return (																		
-					<AliensComponent aliens={this.state.aliens} navigator={this.props.navigation} refetch={() => {this.fetchAliens()}}></AliensComponent>
+					<AliensComponent aliens={this.props.aliens} navigator={this.props.navigation} refetch={() => {this.fetchAliens()}}></AliensComponent>
 				);
 			}
 			else
@@ -86,4 +89,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps)(Aliens)
+export default connect(mapStateToProps, {setAliens: setAliens})(Aliens)

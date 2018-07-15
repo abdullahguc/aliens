@@ -12,17 +12,21 @@ import AddForm from './screens/AddAlien.js';
 import {createSwitchNavigator, 
 		createStackNavigator} from 'react-navigation';
 import localStorage from 'react-native-sync-localstorage';
+import {store} from './redux/store'
+import {Provider} from 'react-redux'
 
 export default class App extends React.Component {
 
 
   render() {
     return (
+		<Provider store={store}>
           <MainNavigator
         	screenProps={{
         	  aliens: aliens,
         	}}
      	 />
+		</Provider>
     );
   }
 }

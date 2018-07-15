@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import Row from './../components/AlienRow.js';
 import AliensComponent from './../components/Aliens.js';
 import localStorage from 'react-native-sync-localstorage';
+import {editAlienAPI, deleteAlienAPI} from './../api.js'
+import {updateAlien, deleteAlien} from './../redux/actions/actions'; 
+import {connect} from 'react-redux';
 
-
-export default class alien extends React.Component{
+class alien extends React.Component{
 
 	state = {
 		alien: {}, 
@@ -16,24 +18,15 @@ export default class alien extends React.Component{
 		name: '', 
 		description: '',
 	};
-	_onDelete = () =>
+	_onDelete = async () =>
 	{
 		
 		var alien = this.props.navigation.state.params.alien;
-		fetch('https://aliens-app.herokuapp.com/api/v1/admin/alliens/' + alien.id, {
-		  method: 'DELETE',
-		  headers: {
-			Authorization: localStorage.getItem('auth_token'),
-			Accept: 'application/json',
-			'Content-Type': 'application/json',
-		  }
-		}).then((response) => response.json()).then((res) => {
-			var aliens = this.props.navigation.state.params.alien;
-			this.props.navigation.state.params.refetch();
-			this.props.navigation.navigate('Aliens');
-		}).catch((err) => {console.log(err)});
+		var res = await deleteAlienAPI(alien.id);
+		this.props.deleteAlien(alien.id);
+		this.props.navigation.navigate('Aliens');
 	}
-	_onEdit = () =>
+	_onEdit = async () =>
 	{
 		if(!this.state.edit)
 		{
@@ -51,24 +44,14 @@ export default class alien extends React.Component{
 				name: this.state.name,
 				desc: this.state.description
 			};
-			fetch('https://aliens-app.herokuapp.com/api/v1/admin/alliens/' + alien.id, {
-			  method: 'PUT',
-			  body: JSON.stringify(alien), 
-			  headers: {
-				Authorization: localStorage.getItem('auth_token'),
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			  }
-			}).then((response) => response.json()).then((res) => {
-				console.log(res);
-				this.props.navigation.state.params.alien.name = this.state.name;
-				this.props.navigation.state.params.alien.desc = this.state.description;
-				this._EditArray(this.props.navigation.state.params.aliens, alien);
-				this.state.edit = false;
-				this.props.navigation.state.params.refetch();
-				this.forceUpdate();
-			}).catch((err) => {console.log(err)});
-				
+			var res = await editAlienAPI(alien);
+			var resjson = await res.json();
+			console.log(resjson)
+			this.props.navigation.state.params.alien.name = this.state.name;
+			this.props.navigation.state.params.alien.desc = this.state.description;
+			this.state.edit = false;
+			this.props.updateAlien(alien);
+			this.forceUpdate();
 		}
 
 	}
@@ -164,3 +147,6 @@ const styles = StyleSheet.create({
 });
 
 const addKeys = (val, key) => ({ key, ...val });
+
+
+export default connect(null, {updateAlien: updateAlien, deleteAlien: deleteAlien})(alien)
