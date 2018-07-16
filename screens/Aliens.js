@@ -80,6 +80,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 		paddingTop: '15%',
 	},
+	padding:
+	{
+		paddingTop: '15%'
+	}
 });
 
 const addKeys = (val, key) => ({ key, ...val });

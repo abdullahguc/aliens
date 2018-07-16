@@ -137,11 +137,14 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 		fontSize: 20,
 		paddingBottom:'1%',
+		width: '50%',
 	},
 	form: {
 		paddingTop: '5%',
 		width: '50%',
 		paddingLeft: '10%',	
+		alignItems: 'center',
+		justifyContent: 'space-between',
 	},
 });
 

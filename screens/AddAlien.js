@@ -6,7 +6,7 @@ import AliensComponent from './../components/Aliens.js';
 import localStorage from 'react-native-sync-localstorage';
 import {addAlien} from './../redux/actions/actions'; 
 import {connect} from 'react-redux';
-import {editAlienAPI} from './../api.js'
+import {addAlienAPI} from './../api.js'
 
 
 class addAlienScreen extends React.Component{
@@ -54,16 +54,16 @@ class addAlienScreen extends React.Component{
 	
 	_onAdd = async () =>
 	{
-
+			console.log(this.state.id);
 			var alien = {
-				key: this.state.id,
-				id: this.state.id,
 				name: this.state.name,
 				desc: this.state.description
 			};
 			
-			await addAlienAPI(alien);
-		    this.props.addAlien(alien);	
+			var res = await addAlienAPI(alien);
+				
+			ret = {...res, key: res.id};
+		    this.props.addAlien(ret);	
 			this.props.navigation.navigate('Aliens');		
 	}
 

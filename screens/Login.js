@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 	},
 	textbox: {
-		backgroundColor: 'white',
+		backgroundColor: '#d6e5ff',
 		fontSize: 20,
 		paddingBottom:'1%',
 		borderRadius: 15,

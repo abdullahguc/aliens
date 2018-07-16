@@ -2,7 +2,7 @@ import localStorage from 'react-native-sync-localstorage';
 
 export const addAlienAPI = async (alien) => {
 	try {
-		var res = await fetch('https://aliens-app.herokuapp.com/api/v1/admin/alliens/' + alien.id, {
+		var res = await fetch('https://aliens-app.herokuapp.com/api/v1/admin/alliens/', {
 			  method: 'POST',
 			  body: JSON.stringify(alien), 
 			  headers: {
@@ -11,8 +11,8 @@ export const addAlienAPI = async (alien) => {
 				'Content-Type': 'application/json',
 			  }
 			});
-
-		return res; 
+		var resjson = await res.json();
+		return resjson; 
 
 	}catch(err){
 		console.log(err);
