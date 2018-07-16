@@ -1,8 +1,14 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import reducer from './reducers/reducers';
 
 
-export const store = createStore(reducer);
+const logActions = store => next => action => {
+	console.log(action);
+	next(action);
+
+}
+
+export const store = createStore(reducer, applyMiddleware(logActions));
 
 
 export default store;

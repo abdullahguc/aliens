@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
 	{
 		flex: 1,
 		flexDirection: 'column',
-		justifyContent: 'center',
+		justifyContent: 'space-between',
         alignItems: 'center',
 	
 	},
@@ -116,12 +116,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 	},
 	textbox: {
-		backgroundColor: 'white',
+		backgroundColor: '#d6e5ff',
 		fontSize: 20,
 		paddingBottom:'1%',
+		borderRadius: 15,
 	},
 	button: {
 		width: '50%',
 		paddingBottom: '1%',
+		justifyContent: 'space-between',
 	},
 });

@@ -2,13 +2,14 @@ import React from 'react';
 import { Button, ScrollView, ActivityIndicator, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import Row from './../components/AlienRow.js';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const AliensComponent = props => (
-		<View style={{paddingBottom: '5%'}}>
+		<View style={styles.parent}>
 			<View style={styles.button}>
-						<Button title = "Add New Alien" onPress = {() => {props.navigator.navigate('Add', {navigator:props.navigator, aliens: props.aliens, alien: props.alien, refetch: () => {props.refetch()} });} }/>
+			<Button title = "+ Add New Alien" onPress = {() => {props.navigator.navigate('Add', {navigator:props.navigator, aliens: props.aliens, alien: props.alien, refetch: () => {props.refetch()} });} }/>
 			</View>
-			<ScrollView>{props.aliens.map(alien => <Row key = {alien.key} alien={alien} navigator={props.navigator} aliens= {props.aliens} refetch={() => {props.refetch() }}/>)}</ScrollView>
+			<ScrollView style={styles.scroll}>{props.aliens.map(alien => <Row key = {alien.key} alien={alien} navigator={props.navigator} aliens= {props.aliens} refetch={() => {props.refetch() }}/>)}</ScrollView>
 		</View>
 );
 	
@@ -23,10 +24,10 @@ const styles = StyleSheet.create({
 	parent: 
 	{
 		flex: 1,
-		flexDirection: 'column',
 		justifyContent: 'center',
         alignItems: 'center',
-	
+		height: '100%',
+		position: 'absolute',
 	},
 	backgroundImage: {
 		width: '100%',
@@ -43,8 +44,12 @@ const styles = StyleSheet.create({
 	button: {
 		width: '50%',
 		paddingBottom: '1%',
-		paddingTop: '5%',
+		paddingTop: '1%',
 	},
+	scroll: {
+		flex:1,
+		height:'100%',
+	}
 });
 
 export default AliensComponent;
