@@ -46,7 +46,6 @@ class alien extends React.Component{
 			};
 			var res = await editAlienAPI(alien);
 			var resjson = await res.json();
-			console.log(resjson)
 			this.props.navigation.state.params.alien.name = this.state.name;
 			this.props.navigation.state.params.alien.desc = this.state.description;
 			this.state.edit = false;

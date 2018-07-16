@@ -2,6 +2,9 @@ import React from "react";
 import { Button, View, StyleSheet, Text, AsyncStorage, ImageBackground, TextInput} from "react-native";
 import jwtDecode from 'jwt-decode';
 import localStorage from 'react-native-sync-localstorage';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Makiko } from 'react-native-textinput-effects';
+
 
 export default class Register extends React.Component{
 
@@ -20,13 +23,17 @@ export default class Register extends React.Component{
 		   		>
 					<View style={styles.button}>
 						<TextInput
+						  label="Email"
 						  placeholder="Email"
+						  iconName={'envelope'}
          			 	  onChangeText={this.getHandler('email')}
 						  style={styles.textbox}
 						  value={this.state.email}
 						/>
 						<TextInput
+			 			  label="Password"
 						  placeholder="Password"
+    					  iconName={'key'}
          			 	  onChangeText={this.getHandler('password')}
 						  value={this.state.password}
 						  style={styles.textbox}
